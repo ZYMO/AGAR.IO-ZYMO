@@ -2,7 +2,7 @@
 	"manifest_version":2,
 	"name":"ZYMO Agar.io Bot",
 	"short_name":"ZYMO",
-	"version":"1.5.550",
+	"version":"1.5.551",
 	"content_scripts": [
 		{
 			"matches":["http://agar.io/"],
