@@ -21,7 +21,7 @@ var name='ZYMO',
 	lastActionBest5Div=$('<ol id="last-action-best-5"></ol>').appendTo(body),
 	aiStatusDiv=$('<div id="ai-intuition"></div>').appendTo('body'),
 	aiStatusH4=$('<h4 id="ai-status"></h4>').appendTo(aiStatusDiv),
-	considerationChart=new Chart($('<canvas id="behavior-canvas" width="350" height="100"></canvas>').appendTo(aiStatusDiv).get(0).getContext("2d")).Doughnut(ai.considerations),
+	considerationChart=new Chart($('<canvas id="behavior-canvas" width="350" height="350"></canvas>').appendTo(aiStatusDiv).get(0).getContext("2d")).Doughnut(ai.considerations),
 	scoreH4=$('<h4 id="score"></h4>').appendTo('body'),
 	heatMapCtx=$('<canvas id="heat-map" width="175" height="175"></canvas>')
 		.appendTo(body)
