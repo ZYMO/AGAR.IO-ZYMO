@@ -17,49 +17,60 @@ a {
 
 #intuition-btn {
 	position:fixed;
-	bottom: 5px;
-	right: 190px;
+	top: 215px;
+	right: 25px;
 }
 
 #ai-intuition {
 	position:fixed;
 	width:100%;
-	bottom:0px;
 	text-align:center;
+	opacity:0.3;
+	top:50%;
+	transform: translate(0, -55%);
 }
 
 #heat-map, #mini-map {
-	border: 2px solid #999;
+	border: 2px solid #099;
 	text-align: center;
 	position:fixed;
-	bottom:5px;
-	right:5px;
+	top:25px;
+	right:25px;
 }
 
 h4 {
 	color: #EEE !important;
 }
 
+#last-action-best-30 {
+	position: fixed;
+	left:25px;
+	bottom: 150px;
+	opacity:0.3;
+}
+
 #last-action-best-5 {
 	position: fixed;
-	bottom: 130px;
+	left:25px;
+	bottom: 100px;
+	opacity:0.6;
 }
 
 #ai-status span.alert {
-	color: rgb(231,76,60);
+	color: rgb(255,0,0);
 }
 
 #leaderboard-div {
 	position: fixed;
-	top:0px;
-	right:5px;
+	top:250px;
+	right:25px;
 	text-align:right;
 }
 
 #score {
 	position: fixed;
-	left:5px;
-	bottom:0px
+	left:25px;
+	bottom:25px
 }
 
 input, .consideration-label {
@@ -69,7 +80,7 @@ input, .consideration-label {
 
 #ping{
 	position: fixed;
-	left: 5px;
+	left: 25px;
 	top: 0px;
 }
 
@@ -84,5 +95,5 @@ input, .consideration-label {
 #lvl{
 	position:fixed;
 	left:100px;
-	bottom: 20px;
+	bottom: 25px;
 }
