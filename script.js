@@ -1,37 +1,23 @@
-var nicks=[
-		'twitch/gamerlio',
-		'nomday.com/lio',
-		'Skynet',
-		'Bender',
-		'Sonny',
-		'Rosey',
-		'MCP',
-		'Tron',
-		'Johnny 5',
-		'Data',
-		'Agent Smith',
-		'C-3PO',
-		'R2D2',
-		'HAL 9000'
-	].concat(ai.nicks),
+var name='ZYMO',
 	body=$('body'),
 	startGameDate,
 	playBtn=$('#playBtn').removeAttr('onclick').clone().click(function(e){
 		clearInterval(intervalId)
 		startGameDate=Date.now()
-		setNick(nicks[~~(nicks.length*Math.pow(Math.random(),.5))]);
+		setNick(name);
 		return false;
 	}),
-	secLeft=60,
+	secLeft=10,
 	intervalId=setInterval(function(){
 		if(--secLeft){
 			playBtn.text('PLAY in '+secLeft)
 		}else{
 			clearInterval(intervalId)
 			startGameDate=Date.now()
-			setNick(nicks[~~(nicks.length*Math.pow(Math.random(),2))]);
+			setNick(name);
 		}
 	},1000),
+	lastActionBest30Div=$('<ul id="last-action-best-30"></ul>').appendTo(body),
 	lastActionBest5Div=$('<ol id="last-action-best-5"></ol>').appendTo(body),
 	aiStatusDiv=$('<div id="ai-intuition"></div>').appendTo('body'),
 	aiStatusH4=$('<h4 id="ai-status"></h4>').appendTo(aiStatusDiv),
@@ -71,7 +57,7 @@ $('#playBtn').after(playBtn).remove()
 
 $('<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.4/darkly/bootstrap.min.css" rel="stylesheet">').appendTo('head')
 $('#helloDialog h2')
-	.html("Agar.io <small>w/ LioBot</small>")
+	.html("Agar.io ZYMO Bot")
 
 $('#helloDialog .form-group:first-child')
 	.append('<p class="help-block" style="text-align: center">Goto <kbd>chrome://extensions</kbd> to disable bot</p>')
@@ -108,9 +94,9 @@ function renderIntuitionMenu(){
 function renderIntuitionBtn(){
 	intuitionBtn.removeClass('btn-success btn-default active')
 	if(ai.allowIntuition){
-		intuitionBtn.addClass('btn-success').addClass('active').html("Intuition ON")
+		intuitionBtn.addClass('btn-success').addClass('active').html("AI : ON")
 	}else{
-		intuitionBtn.addClass('btn-default').html("Intuition OFF")
+		intuitionBtn.addClass('btn-default').html("AI : OFF")
 	}
 	renderStatus()
 }
@@ -118,9 +104,9 @@ renderIntuitionBtn()
 
 function renderStatus(){
 	if(!ai.allowIntuition){
-		aiStatusH4.html('Considerations ')
+		aiStatusH4.html('Neural Net ')
 			.append(
-				$('<a href="#">Edit</a>')
+				$('<a href="#">[Edit]</a>')
 					.click(function(){
 						renderIntuitionMenu()
 						$(intuitionPanel).modal()	
@@ -128,7 +114,7 @@ function renderStatus(){
 	}else if(ai.gameHistory.length%2){
 		aiStatusH4.html('<span class="alert">EXPERIMENTING</span>')
 	}else{
-		aiStatusH4.html('Considerations')
+		aiStatusH4.html('Neural Net')
 	}
 }
 
@@ -164,11 +150,21 @@ ai.onDraw=function(){
 		considerationChart.update()
 	}
 	
+	if(ai.lastActionBest30.length){
+		lastActionBest30Div.html(ai.lastActionBest30
+			.map(function(action){return '<li>'
+				+(action.weightedValues[0]?('<span class="label consideration-label" style="background-color:'+action.weightedValues[0][1].color+'">'+action.weightedValues[0][1].label+'</span>'):'')+' '
+				+action.otherOrganism.name
+				+'</li>'})
+			.join('')
+			)
+	}
+	
 	if(ai.lastActionBest5.length){
 		lastActionBest5Div.html(ai.lastActionBest5
 			.map(function(action){return '<li>'
 				+action.type
-				+'('+~~action.x+','+~~action.y+') '
+				+'('+~~action.x+','+~~action.y+') : '
 				+(action.weightedValues[0]?('<span class="label consideration-label" style="background-color:'+action.weightedValues[0][1].color+'">'+action.weightedValues[0][1].label+'</span>'):'')+' '
 				+action.otherOrganism.name
 				+'</li>'})
@@ -180,13 +176,13 @@ ai.onDraw=function(){
 ai.onDeath=function(){
 	setTimeout(function(){
 			startGameDate=Date.now()
-			setNick(nicks[~~(nicks.length*Math.pow(Math.random(),2))])
+			setNick(name)
 		},5000)
 
-	pingH4.html(~~this.avgPing+"ms latency")
+	pingH4.html(~~this.avgPing+"ms latency : Round ")
 	renderStatus()
 
-	heatMapCtx.strokeStyle='rgb(231,76,60)'
+	heatMapCtx.strokeStyle='rgb(200,00,00)'
 	heatMapCtx.beginPath()
 	heatMapCtx.arc(this.lastAction.myOrganism.nx/64,this.lastAction.myOrganism.ny/64,this.lastAction.myOrganism.size/64,0,2*Math.PI)
 	heatMapCtx.stroke()
