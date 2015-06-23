@@ -86,14 +86,14 @@ input, .consideration-label {
 
 #exp{
 	position:fixed;
-	left:100px;
-	bottom: 25px;
+	left:25px;
+	bottom: 60px;
 	width:200px;
 	margin-bottom: 5px;
 }
 
 #lvl{
 	position:fixed;
-	left:100px;
-	bottom: 25px;
+	left:25px;
+	bottom: 85px;
 }
