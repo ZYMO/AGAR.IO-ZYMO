@@ -81,13 +81,13 @@ input, .consideration-label {
 #ping{
 	position: fixed;
 	left: 25px;
-	top: 0px;
+	top: 25px;
 }
 
 #exp{
 	position:fixed;
 	left:100px;
-	bottom: 0px;
+	bottom: 25px;
 	width:200px;
 	margin-bottom: 5px;
 }
