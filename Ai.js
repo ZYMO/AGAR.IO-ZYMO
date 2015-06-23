@@ -166,7 +166,7 @@ Ai.prototype={
 			/(Math.pow(this.lvl+1,4)-Math.pow(this.lvl,4))
 			*100)
 	},
-	nicks:[],
+	name:'ZYMO',
 	totalWeightedScore:0,
 	cushions:[],
 	pings:[],
