@@ -1,8 +1,8 @@
 {
 	"manifest_version":2,
-	"name":"Lio's Agar.io Bot Framework",
-	"short_name":"LioBot",
-	"version":"1.5.548",
+	"name":"ZYMO Agar.io Bot",
+	"short_name":"ZYMO",
+	"version":"1.5.550",
 	"content_scripts": [
 		{
 			"matches":["http://agar.io/"],
@@ -25,3 +25,4 @@
 		"unlimitedStorage"
 	]
 }
+
