@@ -175,6 +175,7 @@ Ai.prototype={
 	onDraw:function(){},
 	totalWeights:[],
 	allowIntuition:false,
+	lastActionBest30:[],
 	lastActionBest5:[],
 	cushion:0,
 	heatmapEnabled:false,
@@ -406,8 +407,8 @@ Ai.prototype={
 	allowShoot:true,
 	shootCooldown:5000,
 	onDeath:function(){},
-	myRing:['rgba(255,255,255,.95)',10,'rgba(53,255,255,.3)',20],
-	badRing:['rgba(255,255,255,1)',4, 'rgba(231,76,60,.3)',20],
+	myRing:['rgba(53,255,255,.95)',10,'rgba(53,255,255,.3)',20],
+	badRing:['rgba(255,00,00,1)',4, 'rgba(231,00,00,.3)',20],
 	goodRing:['rgba(255,255,255,.95)',2, 'rgba(12,227,172,.3)',10],
 	otherRing:['rgba(255,255,255,.9)',1, 'rgba(12,227,172,.1)',2],
 	simulateAction:function(myOrganism,otherOrganisms,action){
@@ -724,7 +725,9 @@ Ai.prototype={
 					)
 				}
 			}
-
+			
+		this.lastActionBest30=actions.slice(0,30)
+		
 		if(depth){
 			actions.sort(function(a,b){return b.importance-a.importance})
 			actions=actions.slice(0,Math.pow(actions.length,Math.pow(2,this.depth)/Math.pow(40,depth))+(this.depth==depth)).map(function(action){
@@ -969,9 +972,6 @@ Ai.prototype={
 		this.onDraw()
 	}
 }
-
-//TODO Become sentient.
-
 
 
 
