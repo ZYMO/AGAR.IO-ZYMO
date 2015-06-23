@@ -4,16 +4,20 @@ var name='ZYMO',
 	playBtn=$('#playBtn').removeAttr('onclick').clone().click(function(e){
 		clearInterval(intervalId)
 		startGameDate=Date.now()
+        setShowMass(true);
+        setDarkTheme(true);
 		setNick(name);
 		return false;
 	}),
-	secLeft=10,
+	secLeft=60,
 	intervalId=setInterval(function(){
 		if(--secLeft){
 			playBtn.text('PLAY in '+secLeft)
 		}else{
 			clearInterval(intervalId)
 			startGameDate=Date.now()
+            setShowMass(true);
+            setDarkTheme(true);
 			setNick(name);
 		}
 	},1000),
@@ -113,8 +117,10 @@ function renderStatus(){
 					}))
 	}else if(ai.gameHistory.length%2){
 		aiStatusH4.html('<span class="alert">EXPERIMENTING</span>')
+        setColors(false);
 	}else{
 		aiStatusH4.html('Neural Net')
+        setColors(true);
 	}
 }
 
@@ -179,7 +185,7 @@ ai.onDeath=function(){
 			setNick(name)
 		},5000)
 
-	pingH4.html(~~this.avgPing+"ms latency : Round ")
+	pingH4.html(~~this.avgPing+"ms latency : Round "+ai.gameHistory.length)
 	renderStatus()
 
 	heatMapCtx.strokeStyle='rgb(200,00,00)'
@@ -188,14 +194,14 @@ ai.onDeath=function(){
 	heatMapCtx.stroke()
 }
 
-var leaderboardList=$('<ul class="list-unstyled"></ul>').appendTo($('<div id="leaderboard-div"><h4>Leaderboard <small>UserID</small></h4></div>').appendTo('body'))
+var leaderboardList=$('<ul class="list-unstyled"></ul>').appendTo($('<div id="leaderboard-div"><h4>Leaderboard </h4></div>').appendTo('body'))
 ai.updateLeaderboard=function(organisms,myOrganismIds){
 	leaderboardList.html('')
 	organisms.forEach(function(organism){
 		if(myOrganismIds.indexOf(organism.id) == -1){
-			leaderboardList.append('<li>'+organism.name+' <small class="text-muted">'+organism.id+'</small></li>')
+			leaderboardList.append('<li>'+organism.name+'</li>')
 		}else{
-			leaderboardList.append('<li class="text-warning">'+organism.name+' <small class="text-muted">'+organism.id+'</small></li>')
+			leaderboardList.append('<li class="text-warning">'+organism.name+'</li>')
 		}
 	})
 }
