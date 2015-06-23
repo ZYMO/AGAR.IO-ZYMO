@@ -55,9 +55,9 @@ var name='ZYMO',
 
 $('#playBtn').after(playBtn).remove()
 
-$('<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.4/darkly/bootstrap.min.css" rel="stylesheet">').appendTo('head')
+$('<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.5/cyborg/bootstrap.min.css" rel="stylesheet">').appendTo('head')
 $('#helloDialog h2')
-	.html("Agar.io ZYMO Bot")
+	.html(name)
 
 $('#helloDialog .form-group:first-child')
 	.append('<p class="help-block" style="text-align: center">Goto <kbd>chrome://extensions</kbd> to disable bot</p>')
